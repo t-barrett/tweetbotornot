@@ -96,7 +96,7 @@ extract_features_ytweets <- function(x) {
         (.data$friends_count + .data$followers_count + 1)
     )
   x <- x[names(x) != "n"]
-  dplyr::full_join(x, dd, by = "user_id") %>%
+  dplyr::full_join(x, dd) %>%
     dplyr::group_by(user_id) %>%
     dplyr::summarise_all(mean, na.rm = TRUE)
 }
@@ -218,6 +218,6 @@ extract_features_ntweets <- function(x) {
       statuses_rate  = (statuses_count + 1) / (years_on_twitter + .001),
       ff_ratio = (followers_count + 1) / (friends_count + followers_count + 1)
     )
-  dplyr::left_join(x, dd, by = "user_id")
+  dplyr::left_join(x, dd)
 }
 
