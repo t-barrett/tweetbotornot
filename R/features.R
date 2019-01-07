@@ -200,7 +200,7 @@ extract_features_ntweets <- function(x) {
   dd1 <- cbind(txt_df, b64_df[-1])
   dd2 <- cbind(dsc_df, loc_df[-1])
   dd2 <- cbind(dd2, nm_df[-1])
-  dd <- dplyr::left_join(dd1, dd2, by = "user_id")
+  dd <- dplyr::left_join(dd1, dd2)
 
   x <- x %>%
     dplyr::group_by(user_id) %>%
